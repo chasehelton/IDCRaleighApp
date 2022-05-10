@@ -1,22 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Videos from './Videos';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Home from './screens/Home'
+import Videos from './screens/Videos';
+import Settings from './screens/Settings';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <Videos />
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? 'ios-home'
+                : 'ios-home-outline';
+            } else if (route.name === 'Settings') {
+              iconName = focused ? 'ios-settings' : 'ios-settings-outline';
+            } else if (route.name === 'Videos') {
+              iconName = focused ? 'ios-videocam' : 'ios-videocam-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'red',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Videos" component={Videos} />
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Settings" component={Settings} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    overflow: 'hidden',
-    maxHeight: 0,
-    maxWidth: 0,
-    flex: 1,
-  },
-});
