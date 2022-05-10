@@ -189,7 +189,7 @@ export default function Videos() {
   // const [videos, setVideos] = useState<any>([]);
 
   // useEffect(() => {
-  //   fetch(`https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=UCBSm_WnW5JYa4L3cMl9xSFQ&part=snippet,id&order=date&maxResults=20`)
+  //   fetch(`https://www.googleapis.com/youtube/v3/playlistItems?key=${YOUTUBE_API_KEY}&playlistId=PLfIOTwJ62ao5u-Z_Feoi9D7ApEj8r6keP&part=snippet,id&order=date&maxResults=10`)
   //     .then(res => res.json())
   //     .then(res => { setVideos(res) })
   // }, []);
@@ -204,7 +204,6 @@ export default function Videos() {
       >
         {data && data.items && data.items.map((video: any, idx: number) => (
           <View key={idx} style={styles.video}>
-            
             <TouchableOpacity style={{width: '100%', backgroundColor: '#ddd', alignItems: 'center', justifyContent: 'center'}} onPress={() => Linking.openURL(`http://www.youtube.com/watch?v=${video.id.videoId}`)}>
               <Image source={{ uri: video.snippet.thumbnails.high.url }} resizeMode="cover" style={{ width: 320, height: 180, borderRadius: 10 }} />
               <Text style={{fontWeight: 'bold', fontSize: '16px', padding: 10}}>{video.snippet.title}</Text>

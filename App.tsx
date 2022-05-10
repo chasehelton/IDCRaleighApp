@@ -4,6 +4,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Home from './screens/Home'
 import Videos from './screens/Videos';
 import Settings from './screens/Settings';
+import Communities from './screens/Communities';
+import Members from './screens/Members';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +25,10 @@ export default function App() {
               iconName = focused ? 'ios-settings' : 'ios-settings-outline';
             } else if (route.name === 'Videos') {
               iconName = focused ? 'ios-videocam' : 'ios-videocam-outline';
+            } else if (route.name === 'Members') {
+              iconName = focused ? 'ios-people' : 'ios-people-outline';
+            } else if (route.name === 'Communities') {
+              iconName = focused ? 'ios-chatbubbles' : 'ios-chatbubbles-outline';
             }
 
             // You can return any component that you like here!
@@ -32,8 +38,10 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
+        <Tab.Screen name="Communities" component={Communities} />
         <Tab.Screen name="Videos" component={Videos} />
         <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Members" component={Members} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
     </NavigationContainer>
